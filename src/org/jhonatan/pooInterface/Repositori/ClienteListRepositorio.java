@@ -36,11 +36,10 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
         this.dataSource.add(cliente);
     }
 
-
-    @Override
     public void editar(Cliente cliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'editar'");
+        Cliente c = this.porId(cliente.getId());
+        c.setNombre(cliente.getNombre());
+        c.setApellido(cliente.getApellido());
     }
 
     @Override
