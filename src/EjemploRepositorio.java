@@ -40,9 +40,7 @@ public class EjemploRepositorio {
         Cliente bea = repo.porId(1);
         System.out.println(bea);
         System.out.println("=========");
-        List<Cliente> clientesOrdenable2 = ((OrdenableRepositorio) repo).listar("apellido", Direccion.ASC);
-        for (Cliente cliente : clientesOrdenable2) {
-            System.out.println(cliente);
-        }
+        ((OrdenableRepositorio) repo)
+                .listar("apellido", Direccion.ASC).forEach(System.out::println);
     }
 }
