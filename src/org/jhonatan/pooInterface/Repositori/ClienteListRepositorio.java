@@ -44,8 +44,8 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 
     @Override
     public void eliminar(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+        Cliente c = this.porId(id);
+        this.dataSource.remove(c);
     }
 
     @Override
