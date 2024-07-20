@@ -1,7 +1,6 @@
 package org.jhonatan.pooInterface.Repositori;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import org.jhonatan.pooInterface.Modelo.Cliente;
@@ -86,7 +85,7 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 
     @Override
     public List<Cliente> listar(int desde, int hasta) {
-
+        return this.dataSource.subList(desde, hasta);
     }
 
 }
