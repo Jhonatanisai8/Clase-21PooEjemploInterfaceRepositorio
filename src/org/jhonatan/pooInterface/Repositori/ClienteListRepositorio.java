@@ -33,9 +33,9 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 
     @Override
     public void crear(Cliente cliente) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'crear'");
+        this.dataSource.add(cliente);
     }
+
 
     @Override
     public void editar(Cliente cliente) {
