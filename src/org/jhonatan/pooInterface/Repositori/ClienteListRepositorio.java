@@ -51,39 +51,37 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 
     @Override
     public List<Cliente> listar(String campo, Direccion direccion) {
-        this.dataSource.sort(new Comparator<Cliente>() {
-            @Override
-            public int compare(Cliente a, Cliente b) {
-                int result = 0;
-                if (direccion == Direccion.ASC) {
-                    switch (campo) {
-                        case "id":
-                            result = a.getId().compareTo(b.getId());
-                            break;
-                        case "nombre":
-                            result = a.getNombre().compareTo(b.getNombre());
-                            break;
-                        case "apellido":
-                            result = a.getApellido().compareTo(b.getApellido());
-                            break;
-                    }
-                } else if (direccion == Direccion.DESD) {
-                    switch (campo) {
-                        case "id":
-                            result = b.getId().compareTo(a.getId());
-                            break;
-                        case "nombre":
-                            result = b.getNombre().compareTo(a.getNombre());
-                            break;
-                        case "apellido":
-                            result = b.getApellido().compareTo(a.getApellido());
-                            break;
-                    }
+        this.dataSource.sort((a, b) -> {
+            int result = 0;
+            if (direccion == Direccion.ASC) {
+                switch (campo) {
+                    case "id":
+                        result = a.getId().compareTo(b.getId());
+                        break;
+                    case "nombre":
+                        result = a.getNombre().compareTo(b.getNombre());
+                        break;
+                    case "apellido":
+                        result = a.getApellido().compareTo(b.getApellido());
+                        break;
                 }
-                return result;
+            } else if (direccion == Direccion.DESD) {
+                switch (campo) {
+                    case "id":
+                        result = b.getId().compareTo(a.getId());
+                        break;
+                    case "nombre":
+                        result = b.getNombre().compareTo(a.getNombre());
+                        break;
+                    case "apellido":
+                        result = b.getApellido().compareTo(a.getApellido());
+                        break;
+                }
             }
+            return result;
         });
         return dataSource;
+
     }
 
     @Override
