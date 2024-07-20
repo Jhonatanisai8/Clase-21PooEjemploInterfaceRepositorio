@@ -23,7 +23,7 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
     public Cliente porId(Integer id) {
         Cliente c = null;
         for (Cliente cliente : dataSource) {
-            if (cliente.getId().equals(id)) {
+            if (cliente.getId() != null && cliente.getId().equals(id)) {
                 c = cliente;
                 break;
             }
