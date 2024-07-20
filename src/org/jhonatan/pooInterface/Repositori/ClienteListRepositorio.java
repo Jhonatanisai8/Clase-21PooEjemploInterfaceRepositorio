@@ -16,14 +16,19 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 
     @Override
     public List<Cliente> listar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listar'");
+        return dataSource;
     }
 
     @Override
     public Cliente porId(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'porId'");
+        Cliente c = null;
+        for (Cliente cliente : dataSource) {
+            if (cliente.getId().equals(id)) {
+                c = cliente;
+                break;
+            }
+        }
+        return c;
     }
 
     @Override
