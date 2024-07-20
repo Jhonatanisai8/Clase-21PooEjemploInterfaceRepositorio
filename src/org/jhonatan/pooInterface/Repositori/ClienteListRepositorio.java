@@ -1,6 +1,7 @@
 package org.jhonatan.pooInterface.Repositori;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.jhonatan.pooInterface.Modelo.Cliente;
@@ -44,20 +45,50 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 
     @Override
     public void eliminar(Integer id) {
-        Cliente c = this.porId(id);
-        this.dataSource.remove(c);
+        // Cliente c = ;this.porId(id)
+        this.dataSource.remove(this.porId(id));
     }
 
     @Override
     public List<Cliente> listar(String campo, Direccion direccion) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listar'");
+        this.dataSource.sort(new Comparator<Cliente>() {
+            @Override
+            public int compare(Cliente a, Cliente b) {
+                int result = 0;
+                if (direccion == Direccion.ASC) {
+                    switch (campo) {
+                        case "id":
+                            result = a.getId().compareTo(b.getId());
+                            break;
+                        case "nombre":
+                            result = a.getNombre().compareTo(b.getNombre());
+                            break;
+                        case "apellido":
+                            result = a.getApellido().compareTo(b.getApellido());
+                            break;
+                    }
+                } else if (direccion == Direccion.DESD) {
+                    switch (campo) {
+                        case "id":
+                            result = b.getId().compareTo(a.getId());
+                            break;
+                        case "nombre":
+                            result = b.getNombre().compareTo(a.getNombre());
+                            break;
+                        case "apellido":
+                            result = b.getApellido().compareTo(a.getApellido());
+                            break;
+                    }
+                }
+                return result;
+            }
+        });
+        return dataSource;
     }
 
     @Override
     public List<Cliente> listar(int desde, int hasta) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listar'");
+
     }
 
 }
