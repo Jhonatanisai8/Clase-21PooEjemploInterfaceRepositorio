@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.jhonatan.pooInterface.Modelo.Cliente;
 
-public class ClienteListRepositorio implements CrudRepositorio {
+public class ClienteListRepositorio implements CrudRepositorio, OrdenableRepositorio {
 
     @Override
     public List<Cliente> listar() {
@@ -31,9 +31,15 @@ public class ClienteListRepositorio implements CrudRepositorio {
     }
 
     @Override
-    public void eliminar(Cliente cliente) {
+    public void eliminar(Integer id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+    }
+
+    @Override
+    public List<Cliente> listar(String campo, Direccion direccion) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'listar'");
     }
 
 }
