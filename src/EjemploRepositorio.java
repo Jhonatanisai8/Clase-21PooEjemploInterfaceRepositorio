@@ -42,5 +42,11 @@ public class EjemploRepositorio {
         System.out.println("=========");
         ((OrdenableRepositorio) repo)
                 .listar("apellido", Direccion.ASC).forEach(System.out::println);
+
+        System.out.println("==ELIMINAR==");
+        repo.eliminar(1);
+
+        repo.listar().forEach(System.out::println);
+
     }
 }
