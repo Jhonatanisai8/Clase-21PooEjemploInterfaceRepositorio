@@ -9,7 +9,6 @@ import org.jhonatan.pooInterface.Repositori.PaginableRepositorio;
 
 public class EjemploRepositorio {
     public static void main(String[] args) throws Exception {
-
         EjemploRepositorio();
     }
 
@@ -29,8 +28,20 @@ public class EjemploRepositorio {
         paginable.forEach(System.out::println);
 
         System.out.println("=====ORDENAR=====");
-        List<Cliente> clientesOrdenable = ((OrdenableRepositorio) repo).listar("nombre", Direccion.ASC);
+        List<Cliente> clientesOrdenable = ((OrdenableRepositorio) repo).listar("apellido", Direccion.ASC);
         for (Cliente cliente : clientesOrdenable) {
+            System.out.println(cliente);
+        }
+
+        System.out.println("===EDITAR===");
+        Cliente luciActualizar = new Cliente("Bea", "Perez");
+        luciActualizar.setId(1);
+        repo.editar(luciActualizar);
+        Cliente bea = repo.porId(1);
+        System.out.println(bea);
+        System.out.println("=========");
+        List<Cliente> clientesOrdenable2 = ((OrdenableRepositorio) repo).listar("apellido", Direccion.ASC);
+        for (Cliente cliente : clientesOrdenable2) {
             System.out.println(cliente);
         }
     }
