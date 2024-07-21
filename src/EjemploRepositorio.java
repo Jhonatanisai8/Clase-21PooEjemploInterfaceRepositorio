@@ -28,7 +28,7 @@ public class EjemploRepositorio {
         paginable.forEach(System.out::println);
 
         System.out.println("=====ORDENAR=====");
-        List<Cliente> clientesOrdenable = ((OrdenableRepositorio) repo).listar("apellido", Direccion.ASC);
+        List<Cliente> clientesOrdenable = ((OrdenableRepositorio) repo).listar("nombre", Direccion.DESD);
         for (Cliente cliente : clientesOrdenable) {
             System.out.println(cliente);
         }
@@ -41,11 +41,12 @@ public class EjemploRepositorio {
         System.out.println(bea);
         System.out.println("=========");
         ((OrdenableRepositorio) repo)
-                .listar("apellido", Direccion.ASC).forEach(System.out::println);
+                .listar("apellido", Direccion.DESD).forEach(System.out::println);
 
-        System.out.println("==ELIMINAR==");
-        repo.eliminar(1);
+        //System.out.println("==ELIMINAR==");
+        //repo.eliminar(1);
 
+        System.out.println("LISTA");
         repo.listar().forEach(System.out::println);
 
     }

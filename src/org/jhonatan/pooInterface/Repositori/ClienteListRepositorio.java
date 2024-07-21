@@ -1,6 +1,7 @@
 package org.jhonatan.pooInterface.Repositori;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.jhonatan.pooInterface.Modelo.Cliente;
@@ -50,10 +51,20 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 
     @Override
     public List<Cliente> listar(String campo, Direccion direccion) {
-        List<Cliente> listOOrdenada = new  ArrayList<>(this.dataSource);
-        listOOrdenada.sort((a, b) -> {
-            int result = 0;
-            if (direccion == Direccion.ASC) {
+        List<Cliente> listOOrdenada = new ArrayList<>(this.dataSource);
+        listOOrdenada.sort(new Comparator<Cliente>() {
+            public int compare(Cliente a, Cliente b) {
+                int result = 0;
+                if (direccion == Direccion.ASC) {
+                    result = this.ordenar(a, b);
+                } else if (direccion == Direccion.DESD) {
+                    result = this.ordenar(b, a);
+                }
+                return result;
+            }
+
+            private int ordenar(Cliente a, Cliente b) {
+                int result = 0;
                 switch (campo) {
                     case "id":
                         result = a.getId().compareTo(b.getId());
@@ -65,20 +76,8 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
                         result = a.getApellido().compareTo(b.getApellido());
                         break;
                 }
-            } else if (direccion == Direccion.DESD) {
-                switch (campo) {
-                    case "id":
-                        result = b.getId().compareTo(a.getId());
-                        break;
-                    case "nombre":
-                        result = b.getNombre().compareTo(a.getNombre());
-                        break;
-                    case "apellido":
-                        result = b.getApellido().compareTo(a.getApellido());
-                        break;
-                }
+                return result;
             }
-            return result;
         });
         return listOOrdenada;
     }
