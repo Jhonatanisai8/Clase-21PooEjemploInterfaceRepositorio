@@ -5,8 +5,7 @@ import java.util.List;
 
 import org.jhonatan.pooInterface.Modelo.Cliente;
 
-public class ClienteListRepositorio implements CrudRepositorio,
-        OrdenableRepositorio, PaginableRepositorio {
+public class ClienteListRepositorio implements OrdenablePaginableCrud {
 
     private List<Cliente> dataSource;
 
