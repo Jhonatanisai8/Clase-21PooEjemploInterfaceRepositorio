@@ -52,32 +52,15 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
     @Override
     public List<Cliente> listar(String campo, Direccion direccion) {
         List<Cliente> listOOrdenada = new ArrayList<>(this.dataSource);
-        listOOrdenada.sort(new Comparator<Cliente>() {
-            public int compare(Cliente a, Cliente b) {
-                int result = 0;
-                if (direccion == Direccion.ASC) {
-                    result = this.ordenar(a, b);
-                } else if (direccion == Direccion.DESD) {
-                    result = this.ordenar(b, a);
-                }
-                return result;
+        listOOrdenada.sort((a, b) -> {
+            int result = 0;
+            if (direccion == Direccion.ASC) {
+                result = this.ordenar(campo, a, b);
+            } else if (direccion == Direccion.DESD) {
+                result = this.ordenar(campo, a, b);
             }
+            return result;
 
-            private int ordenar(Cliente a, Cliente b) {
-                int result = 0;
-                switch (campo) {
-                    case "id":
-                        result = a.getId().compareTo(b.getId());
-                        break;
-                    case "nombre":
-                        result = a.getNombre().compareTo(b.getNombre());
-                        break;
-                    case "apellido":
-                        result = a.getApellido().compareTo(b.getApellido());
-                        break;
-                }
-                return result;
-            }
         });
         return listOOrdenada;
     }
@@ -85,6 +68,22 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
     @Override
     public List<Cliente> listar(int desde, int hasta) {
         return this.dataSource.subList(desde, hasta);
+    }
+
+    private int ordenar(String campo, Cliente a, Cliente b) {
+        int result = 0;
+        switch (campo) {
+            case "id":
+                result = a.getId().compareTo(b.getId());
+                break;
+            case "nombre":
+                result = a.getNombre().compareTo(b.getNombre());
+                break;
+            case "apellido":
+                result = a.getApellido().compareTo(b.getApellido());
+                break;
+        }
+        return result;
     }
 
 }
