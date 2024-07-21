@@ -50,7 +50,8 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
 
     @Override
     public List<Cliente> listar(String campo, Direccion direccion) {
-        this.dataSource.sort((a, b) -> {
+        List<Cliente> listOOrdenada = new  ArrayList<>(this.dataSource);
+        listOOrdenada.sort((a, b) -> {
             int result = 0;
             if (direccion == Direccion.ASC) {
                 switch (campo) {
@@ -79,8 +80,7 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
             }
             return result;
         });
-        return dataSource;
-
+        return listOOrdenada;
     }
 
     @Override
