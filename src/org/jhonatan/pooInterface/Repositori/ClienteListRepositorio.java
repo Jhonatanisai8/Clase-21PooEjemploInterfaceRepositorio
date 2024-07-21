@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.jhonatan.pooInterface.Modelo.Cliente;
 
-public class ClienteListRepositorio implements OrdenablePaginableCrud {
+public class ClienteListRepositorio implements OrdenablePaginableCrud,Contable {
 
     private List<Cliente> dataSource;
 
@@ -84,6 +84,11 @@ public class ClienteListRepositorio implements OrdenablePaginableCrud {
                 break;
         }
         return result;
+    }
+
+    @Override
+    public int total() {
+        return this.dataSource.size();
     }
 
 }
