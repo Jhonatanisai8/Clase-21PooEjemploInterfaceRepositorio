@@ -1,7 +1,6 @@
 package org.jhonatan.pooInterface.Repositori;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import org.jhonatan.pooInterface.Modelo.Cliente;
@@ -57,7 +56,7 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
             if (direccion == Direccion.ASC) {
                 result = this.ordenar(campo, a, b);
             } else if (direccion == Direccion.DESD) {
-                result = this.ordenar(campo, a, b);
+                result = this.ordenar(campo, b, a);
             }
             return result;
 
