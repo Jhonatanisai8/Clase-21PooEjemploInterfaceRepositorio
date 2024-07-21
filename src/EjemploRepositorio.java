@@ -9,10 +9,10 @@ import org.jhonatan.pooInterface.Repositori.PaginableRepositorio;
 
 public class EjemploRepositorio {
     public static void main(String[] args) throws Exception {
-        EjemploRepositorio();
+        EjemploRepositorio.EjemploRepositorio1();
     }
 
-    public static void EjemploRepositorio() {
+    static void EjemploRepositorio1() {
         CrudRepositorio repo = new ClienteListRepositorio();
         repo.crear(new Cliente("Jano", "Perez"));
         repo.crear(new Cliente("Andrez", "Gonzalez"));
