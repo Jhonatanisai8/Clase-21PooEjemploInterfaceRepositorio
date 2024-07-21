@@ -54,9 +54,9 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
         listOOrdenada.sort((a, b) -> {
             int result = 0;
             if (direccion == Direccion.ASC) {
-                result = this.ordenar(campo, a, b);
+                result = ordenar(campo, a, b);
             } else if (direccion == Direccion.DESD) {
-                result = this.ordenar(campo, b, a);
+                result = ordenar(campo, b, a);
             }
             return result;
 
@@ -69,7 +69,7 @@ public class ClienteListRepositorio implements CrudRepositorio, OrdenableReposit
         return this.dataSource.subList(desde, hasta);
     }
 
-    private int ordenar(String campo, Cliente a, Cliente b) {
+    public static int ordenar(String campo, Cliente a, Cliente b) {
         int result = 0;
         switch (campo) {
             case "id":
