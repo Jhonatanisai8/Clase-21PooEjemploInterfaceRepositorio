@@ -46,5 +46,8 @@ public class EjemploRepositorio {
         System.out.println("LISTA");
         repo.listar().forEach(System.out::println);
 
+        System.out.println("======TOTAL=====");
+        System.out.println(repo.total());
+        
     }
 }
