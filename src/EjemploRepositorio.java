@@ -41,7 +41,7 @@ public class EjemploRepositorio {
         System.out.println(bea);
         System.out.println("=========");
         ((OrdenableRepositorio) repo)
-                .listar("apellido", Direccion.DESD).forEach(System.out::println);
+                .listar("nombre", Direccion.DESD).forEach(System.out::println);
 
         //System.out.println("==ELIMINAR==");
         //repo.eliminar(1);
