@@ -57,7 +57,7 @@ public class EjemplosGenericosConLimites {
     }
 
     /* metodo que recibe solo clientes */
-    public static <T extends Cliente> List<T> fromArrayList(T[] c) {
+    public static <T extends Cliente & Comparable<T>> List<T> fromArrayList(T[] c) {
         return Arrays.asList(c);
     }
 
