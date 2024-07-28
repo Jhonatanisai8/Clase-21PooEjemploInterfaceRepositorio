@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.jhonatan.pooInterface.Modelo.Cliente;
+import org.jhonatan.pooInterface.Modelo.ClientePremiun;
 
 public class EjemplosGenericosConLimites {
     public static void main(String[] args) {
@@ -33,6 +34,17 @@ public class EjemplosGenericosConLimites {
                 "Juan", "Pedro", "Alberto" }, enterosArreglo);
         nombres.forEach(System.out::println);
 
+        System.out.println("===USO DE METODOS CON LIMITE===");
+
+        List<ClientePremiun> clientesPremiunList = fromArrayList(new ClientePremiun[] {
+                new ClientePremiun("Jose", "Fernández"),
+                new ClientePremiun("Marcos", "Sanchez"),
+                new ClientePremiun("Walter", "Elias")
+        });
+
+
+        clientesPremiunList.forEach(System.out::println);
+
     }
 
     public static <T> List<T> fromArrayList(T[] c) {
@@ -41,6 +53,11 @@ public class EjemplosGenericosConLimites {
 
     /* metodo de tipo generico en donde pasamos tipos de Number */
     public static <T extends Number> List<T> fromArrayList(T[] c) {
+        return Arrays.asList(c);
+    }
+
+    /* metodo que recibe solo clientes */
+    public static <T extends Cliente> List<T> fromArrayList(T[] c) {
         return Arrays.asList(c);
     }
 
